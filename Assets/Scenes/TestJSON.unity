@@ -223,6 +223,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 915760208}
+  - component: {fileID: 915760210}
+  - component: {fileID: 915760209}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -245,6 +247,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &915760209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915760207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd89d934480801f49bd648b66f360d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &915760210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915760207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c44448e1fe9e041b9629a3eba3d987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userKahootsPath: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
