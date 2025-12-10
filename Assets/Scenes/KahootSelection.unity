@@ -1558,7 +1558,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3153145784421396232, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
       propertyPath: m_Name
-      value: KahootItemPrefab
+      value: KahootItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374303037089972195, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_text
+      value: Titulo del Kahoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374303037089972195, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_fontSize
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374303037089972195, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390399769419548907, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390399769419548907, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390399769419548907, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390399769419548907, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390399769419548907, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -170
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390399769419548907, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390399769419548907, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390399769419548907, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
