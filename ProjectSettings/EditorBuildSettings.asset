@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/KahootSelection.unity
     guid: 4c342de69349a88439d840b5525a08fe
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
+    path: Assets/Scenes/Game.unity
     guid: 43e9c28d99fcf0445bc8529050395518
   - enabled: 1
     path: Assets/Scenes/LeaderboardView.unity
