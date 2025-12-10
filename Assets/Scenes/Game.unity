@@ -1686,11 +1686,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723bf89e2a0dc28438b0a92f74bb6f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionText: {fileID: 0}
-  answerButtons: []
-  timerSlider: {fileID: 0}
-  timerText: {fileID: 0}
-  scoreText: {fileID: 0}
+  questionText: {fileID: 694326198}
+  answerButtons:
+  - {fileID: 1459085407}
+  - {fileID: 2082876998}
+  - {fileID: 492128938}
+  - {fileID: 2064923151}
+  timerSlider: {fileID: 2004700788}
+  timerText: {fileID: 147498483}
+  scoreText: {fileID: 283343066}
   timeRemaining: 0
 --- !u!4 &1701421831
 Transform:
