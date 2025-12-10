@@ -5,7 +5,7 @@ public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance;
 
-    [Header("Scene Names")]
+    [Header("Nombres de Escenas")]
     public string mainMenuScene = "MainMenu";
     public string kahootSelectionScene = "KahootSelection";
     public string gameScene = "GameScene";
@@ -15,35 +15,56 @@ public class SceneLoader : MonoBehaviour
 
     void Awake()
     {
-        // Implementar patrón Singleton
+        // Sistema Singleton robusto
         if (Instance == null)
         {
+            // Primera vez - configurar como instancia única
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            Debug.Log("SceneLoader inicializado y marcado como DontDestroyOnLoad");
+            Debug.Log("SceneLoader inicializado como Singleton");
         }
-        else
+        else if (Instance != this)
         {
-            Debug.LogWarning("Ya existe un SceneLoader en la escena. Destruyendo duplicado.");
+            // Ya existe otra instancia - destruir esta duplicada
+            Debug.LogWarning($"Destruyendo SceneLoader duplicado en escena: {SceneManager.GetActiveScene().name}");
             Destroy(gameObject);
-            return;
+            return; // Importante: salir para no ejecutar más código
         }
+
+        // Opcional: renombrar para identificar mejor
+        gameObject.name = "SceneLoader (Singleton)";
     }
+
+    void Start()
+    {
+        Debug.Log($"SceneLoader listo. Escena actual: {SceneManager.GetActiveScene().name}");
+    }
+
+    // ========== MÉTODOS PÚBLICOS PARA BOTONES ==========
 
     // Método genérico para cargar cualquier escena
     public void LoadScene(string sceneName)
     {
         if (string.IsNullOrEmpty(sceneName))
         {
-            Debug.LogError("Nombre de escena vacío o nulo");
+            Debug.LogError("No se puede cargar escena: nombre vacío");
             return;
         }
 
-        Debug.Log($"Cargando escena: {sceneName}");
+        Debug.Log($"Intentando cargar escena: {sceneName}");
+
+        // Verificar si la escena existe en Build Settings
+        if (!DoesSceneExist(sceneName))
+        {
+            Debug.LogError($"La escena '{sceneName}' no existe en Build Settings");
+            return;
+        }
+
+        // Cargar la escena
         SceneManager.LoadScene(sceneName);
     }
 
-    // Métodos específicos para cada escena
+    // Métodos específicos (para configurar en botones del Editor)
     public void LoadMainMenu()
     {
         LoadScene(mainMenuScene);
@@ -74,29 +95,21 @@ public class SceneLoader : MonoBehaviour
         LoadScene(aboutScene);
     }
 
-    // Método para salir del juego
     public void QuitGame()
     {
         Debug.Log("Saliendo del juego...");
 
 #if UNITY_EDITOR
-        // Si estamos en el Editor, detener la reproducción
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-            // Si estamos en una build, salir de la aplicación
             Application.Quit();
 #endif
     }
 
-    // Método para recargar la escena actual
-    public void ReloadCurrentScene()
-    {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        LoadScene(currentSceneName);
-    }
+    // ========== MÉTODOS UTILES ==========
 
-    // Método para verificar si una escena existe
-    public bool SceneExists(string sceneName)
+    // Verificar si una escena existe en Build Settings
+    private bool DoesSceneExist(string sceneName)
     {
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
@@ -111,28 +124,43 @@ public class SceneLoader : MonoBehaviour
         return false;
     }
 
-    // Método para obtener el nombre de la escena actual
+    // Recargar escena actual
+    public void ReloadCurrentScene()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        LoadScene(currentScene);
+    }
+
+    // Obtener nombre de escena actual
     public string GetCurrentSceneName()
     {
         return SceneManager.GetActiveScene().name;
     }
 
-    // Método para cargar escena de forma asíncrona (útil para pantallas de carga)
-    public void LoadSceneAsync(string sceneName)
+    // Cargar escena por índice (útil para pruebas)
+    public void LoadSceneByIndex(int buildIndex)
     {
-        if (string.IsNullOrEmpty(sceneName))
+        if (buildIndex >= 0 && buildIndex < SceneManager.sceneCountInBuildSettings)
         {
-            Debug.LogError("Nombre de escena vacío o nulo");
-            return;
+            SceneManager.LoadScene(buildIndex);
         }
-
-        if (!SceneExists(sceneName))
+        else
         {
-            Debug.LogError($"La escena '{sceneName}' no existe en Build Settings");
-            return;
+            Debug.LogError($"Índice de escena inválido: {buildIndex}");
         }
+    }
 
-        Debug.Log($"Cargando escena asíncrona: {sceneName}");
-        SceneManager.LoadSceneAsync(sceneName);
+    // ========== MÉTODOS PARA DEBUG ==========
+
+    // Listar todas las escenas disponibles
+    public void ListAllScenes()
+    {
+        Debug.Log("=== ESCENAS EN BUILD SETTINGS ===");
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+            string sceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+            Debug.Log($"[{i}] {sceneName}");
+        }
     }
 }

@@ -17,6 +17,28 @@ public class KahootSelectionManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("=== INICIANDO DIAGNÓSTICO ===");
+
+        // 1. Verificar referencias
+        Debug.Log($"Referencia kahootListContent: {kahootListContent != null}");
+        Debug.Log($"Referencia kahootItemPrefab: {kahootItemPrefab != null}");
+        Debug.Log($"Referencia playerNameInput: {playerNameInput != null}");
+
+        // 2. Verificar prefab
+        if (kahootItemPrefab != null)
+        {
+            Debug.Log("Prefab encontrado. Buscando componentes...");
+
+            // Buscar componentes en el prefab
+            Transform titleText = kahootItemPrefab.transform.Find("TitleText");
+            Transform descText = kahootItemPrefab.transform.Find("DescriptionText");
+            Transform playButton = kahootItemPrefab.transform.Find("PlayButton");
+
+            Debug.Log($"TitleText en prefab: {titleText != null}");
+            Debug.Log($"DescriptionText en prefab: {descText != null}");
+            Debug.Log($"PlayButton en prefab: {playButton != null}");
+        }
+
         // Configurar botón volver
         if (backButton != null)
         {
@@ -32,20 +54,25 @@ public class KahootSelectionManager : MonoBehaviour
 
     void LoadKahoots()
     {
-        // Buscar JSONManager en la escena
+        // Añadir log de diagnóstico
+        Debug.Log("=== CARGANDO KAHOOTS ===");
+
         JSONManager jsonManager = FindObjectOfType<JSONManager>();
 
         if (jsonManager != null)
         {
-            Debug.Log("JSONManager encontrado, cargando kahoots...");
+            Debug.Log("JSONManager encontrado");
             availableKahoots = jsonManager.LoadAllKahoots();
-            Debug.Log($"Se cargaron {availableKahoots.Count} kahoots");
+            Debug.Log($"Kahoots cargados: {availableKahoots.Count}");
+
+            foreach (var kahoot in availableKahoots)
+            {
+                Debug.Log($"- {kahoot.title}: {kahoot.questions?.Length ?? 0} preguntas");
+            }
         }
         else
         {
-            Debug.LogError("No se encontró JSONManager en la escena!");
-
-            // Crear datos de prueba si no hay JSONManager
+            Debug.LogWarning("JSONManager NO encontrado. Usando datos de prueba.");
             CreateTestKahoots();
         }
     }
@@ -95,33 +122,39 @@ public class KahootSelectionManager : MonoBehaviour
 
     void PopulateKahootList()
     {
+        Debug.Log("=== POBLANDO LISTA ===");
+
         if (kahootListContent == null)
         {
-            Debug.LogError("kahootListContent no está asignado!");
+            Debug.LogError("ERROR: kahootListContent es NULL!");
             return;
         }
 
         if (kahootItemPrefab == null)
         {
-            Debug.LogError("kahootItemPrefab no está asignado!");
+            Debug.LogError("ERROR: kahootItemPrefab es NULL!");
             return;
         }
 
-        Debug.Log("Llenando lista de kahoots...");
+        // Limpiar lista
+        int childCount = kahootListContent.childCount;
+        Debug.Log($"Limpiando {childCount} hijos existentes");
 
-        // Limpiar lista existente
         foreach (Transform child in kahootListContent)
         {
             Destroy(child.gameObject);
         }
 
-        // Crear items para cada kahoot
-        foreach (KahootQuiz kahoot in availableKahoots)
+        // Crear items
+        Debug.Log($"Creando {availableKahoots.Count} items");
+
+        for (int i = 0; i < availableKahoots.Count; i++)
         {
-            CreateKahootItem(kahoot);
+            Debug.Log($"Creando item {i}: {availableKahoots[i].title}");
+            CreateKahootItem(availableKahoots[i]);
         }
 
-        Debug.Log($"Lista llena con {availableKahoots.Count} items");
+        Debug.Log("=== FIN POBLACIÓN ===");
     }
 
     void CreateKahootItem(KahootQuiz kahoot)

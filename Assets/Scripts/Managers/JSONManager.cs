@@ -9,114 +9,119 @@ public class JSONManager : MonoBehaviour
     void Awake()
     {
         SetupPaths();
+        Debug.Log("JSONManager inicializado");
     }
 
     private void SetupPaths()
     {
-        // Ruta para kahoots del usuario
         userKahootsPath = Path.Combine(Application.persistentDataPath, "UserKahoots");
 
-        // Crear directorio si no existe
         if (!Directory.Exists(userKahootsPath))
         {
             Directory.CreateDirectory(userKahootsPath);
-            Debug.Log("Directorio UserKahoots creado en: " + userKahootsPath);
+            Debug.Log("Directorio UserKahoots creado: " + userKahootsPath);
         }
     }
 
-    // Método principal para cargar todos los kahoots
     public List<KahootQuiz> LoadAllKahoots()
     {
         List<KahootQuiz> allKahoots = new List<KahootQuiz>();
 
-        // 1. Cargar kahoots por defecto
-        LoadDefaultKahoots(allKahoots);
+        // 1. Cargar de Resources (kahoots por defecto)
+        LoadFromResources(allKahoots);
 
-        // 2. Cargar kahoots de usuario
-        LoadUserKahoots(allKahoots);
+        // 2. Cargar de usuario (persistentDataPath)
+        LoadFromUserFolder(allKahoots);
 
-        Debug.Log($"Total de kahoots cargados: {allKahoots.Count}");
+        Debug.Log($"Total kahoots cargados: {allKahoots.Count}");
         return allKahoots;
     }
 
-    private void LoadDefaultKahoots(List<KahootQuiz> kahootsList)
+    private void LoadFromResources(List<KahootQuiz> kahootsList)
     {
         try
         {
-            // Cargar desde Resources/DefaultKahoots
+            // Cargar todos los JSON de Resources/DefaultKahoots
             TextAsset[] jsonFiles = Resources.LoadAll<TextAsset>("DefaultKahoots");
-            Debug.Log($"Encontrados {jsonFiles.Length} kahoots por defecto");
+            Debug.Log($"Encontrados {jsonFiles.Length} archivos en Resources");
 
             foreach (TextAsset jsonFile in jsonFiles)
             {
-                KahootQuiz quiz = ParseKahootJSON(jsonFile.text);
+                KahootQuiz quiz = ParseJSON(jsonFile.text);
                 if (quiz != null)
                 {
+                    quiz.quizId = "default_" + jsonFile.name;
                     kahootsList.Add(quiz);
-                    Debug.Log($"Kahoot cargado: {quiz.title}");
+                    Debug.Log($"✓ Cargado: {quiz.title}");
                 }
             }
         }
         catch (System.Exception e)
         {
-            Debug.LogError("Error cargando kahoots por defecto: " + e.Message);
+            Debug.LogError("Error cargando de Resources: " + e.Message);
         }
     }
 
-    private void LoadUserKahoots(List<KahootQuiz> kahootsList)
+    private void LoadFromUserFolder(List<KahootQuiz> kahootsList)
     {
         try
         {
             if (!Directory.Exists(userKahootsPath))
             {
-                Debug.Log("No existe directorio de kahoots de usuario");
+                Debug.Log("No existe carpeta de usuario");
                 return;
             }
 
             string[] jsonFiles = Directory.GetFiles(userKahootsPath, "*.json");
-            Debug.Log($"Encontrados {jsonFiles.Length} kahoots de usuario");
+            Debug.Log($"Encontrados {jsonFiles.Length} archivos de usuario");
 
             foreach (string filePath in jsonFiles)
             {
                 try
                 {
                     string jsonContent = File.ReadAllText(filePath);
-                    KahootQuiz quiz = ParseKahootJSON(jsonContent);
+                    KahootQuiz quiz = ParseJSON(jsonContent);
                     if (quiz != null)
                     {
+                        quiz.quizId = "user_" + Path.GetFileNameWithoutExtension(filePath);
                         kahootsList.Add(quiz);
-                        Debug.Log($"✓ Kahoot de usuario cargado: {quiz.title}");
+                        Debug.Log($"✓ Cargado de usuario: {quiz.title}");
                     }
                 }
                 catch (System.Exception e)
                 {
-                    Debug.LogError($"Error con archivo {Path.GetFileName(filePath)}: {e.Message}");
+                    Debug.LogError($"Error leyendo {Path.GetFileName(filePath)}: {e.Message}");
                 }
             }
         }
         catch (System.Exception e)
         {
-            Debug.LogError("Error accediendo a kahoots de usuario: " + e.Message);
+            Debug.LogError("Error accediendo a carpeta de usuario: " + e.Message);
         }
     }
 
-    private KahootQuiz ParseKahootJSON(string jsonContent)
+    private KahootQuiz ParseJSON(string jsonContent)
     {
         try
         {
             KahootQuiz quiz = JsonUtility.FromJson<KahootQuiz>(jsonContent);
 
             // Validaciones básicas
+            if (quiz == null)
+            {
+                Debug.LogError("JSON vacío o mal formado");
+                return null;
+            }
+
             if (string.IsNullOrEmpty(quiz.title))
             {
-                Debug.LogError("Kahoot sin título");
-                return null;
+                quiz.title = "Kahoot sin título";
             }
 
             if (quiz.questions == null || quiz.questions.Length == 0)
             {
-                Debug.LogError($"Kahoot '{quiz.title}' no tiene preguntas");
-                return null;
+                Debug.LogWarning($"Kahoot '{quiz.title}' no tiene preguntas");
+                quiz.questions = new KahootQuestion[0];
             }
 
             return quiz;
@@ -126,5 +131,16 @@ public class JSONManager : MonoBehaviour
             Debug.LogError("Error parseando JSON: " + e.Message);
             return null;
         }
+    }
+
+    public KahootQuiz GetKahootById(string quizId)
+    {
+        List<KahootQuiz> allKahoots = LoadAllKahoots();
+        foreach (KahootQuiz quiz in allKahoots)
+        {
+            if (quiz.quizId == quizId)
+                return quiz;
+        }
+        return null;
     }
 }
