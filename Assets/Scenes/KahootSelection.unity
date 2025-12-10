@@ -1497,8 +1497,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 663939059043180588, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 663939059043180588, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 663939059043180588, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2981031723715319998, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
       propertyPath: m_Pivot.x
@@ -1583,6 +1591,34 @@ PrefabInstance:
     - target: {fileID: 3153145784421396232, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
       propertyPath: m_Name
       value: KahootItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848365319972987551, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_text
+      value: "Descripci\xF3n del kahoot"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848365319972987551, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848365319972987551, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848365319972987551, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848365319972987551, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848365319972987551, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848365319972987551, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4284900966
       objectReference: {fileID: 0}
     - target: {fileID: 6374303037089972195, guid: 1a5b8af4b322d024da0ab5e25f8a50a1, type: 3}
       propertyPath: m_text
