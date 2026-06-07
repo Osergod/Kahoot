@@ -1,7 +1,7 @@
 PROJECTE INCOMPLERT
 
 
-#Projecte II: Kahoot 
+# Projecte II: Kahoot 
 Abstract 
 L’objectiu de la pràctica és posar a prova els coneixements d'accés a dades sobre fitxers, 
 així com el de directoris i control d'excepcions mitjançant el desenvolupament individual 
