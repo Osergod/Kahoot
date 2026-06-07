@@ -48,4 +48,4 @@ MonoBehaviour:
   repoButton: {fileID: 0}
   versionText: {fileID: 0}
   bodyText: {fileID: 0}
-  repositoryUrl: https://github.com/mmrafique/Kahoot
+  repositoryUrl: https://github.com/Osergod/Kahoot.git
