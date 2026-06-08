@@ -1,0 +1,63 @@
+{
+    "id": "639007163146011623",
+    "title": "Quiz de Jojo's",
+    "description": "Test sobre la serie animada Jojo's",
+    "timePerQuestion": 15,
+    "questions": [
+        {
+            "questionId": 1,
+            "text": "¿Cuantas partes terminadas tiene la serie animada Jojo's?",
+            "options": [
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "correctIndex": 1
+        },
+        {
+            "questionId": 2,
+            "text": "¿Cual es el nombre real de la obra?",
+            "options": [
+                "Jojo's",
+                "Jojo adventure",
+                "Jojo's bizarre adventure",
+                "La aventura de Jojo"
+            ],
+            "correctIndex": 2
+        },
+        {
+            "questionId": 3,
+            "text": "¿Quien era el villano principal de la primera parte de jojo's?",
+            "options": [
+                "Dio Brando",
+                "Speedwagon",
+                "Jack el destripador",
+                "Jonathan Joestar"
+            ],
+            "correctIndex": 0
+        },
+        {
+            "questionId": 4,
+            "text": "¿En cuantas partes Dio es el villano principal?",
+            "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ],
+            "correctIndex": 1
+        },
+        {
+            "questionId": 5,
+            "text": "¿Cual era el stand de Dio la segunda vez que aparece en la serie?",
+            "options": [
+                "Star platinum",
+                "Made in heaven",
+                "Killer Queen: Bites the dust",
+                "The world"
+            ],
+            "correctIndex": 3
+        }
+    ]
+}
