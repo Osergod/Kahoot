@@ -1,63 +1,63 @@
 {
     "id": "639007163146011623",
-    "title": "Food & Cuisine Quiz",
-    "description": "Test your knowledge about food and cooking",
-    "timePerQuestion": 20,
+    "title": "Quiz de Jojo's",
+    "description": "Test sobre la serie animada Jojo's",
+    "timePerQuestion": 15,
     "questions": [
         {
             "questionId": 1,
-            "text": "Which country is famous for originating pizza?",
+            "text": "¿Cuantas partes terminadas tiene la serie animada Jojo's?",
             "options": [
-                "France",
-                "Spain",
-                "Italy",
-                "Greece"
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            "correctIndex": 1
+        },
+        {
+            "questionId": 2,
+            "text": "¿Cual es el nombre real de la obra?",
+            "options": [
+                "Jojo's",
+                "Jojo adventure",
+                "Jojo's bizarre adventure",
+                "La aventura de Jojo"
             ],
             "correctIndex": 2
         },
         {
-            "questionId": 2,
-            "text": "What is the main ingredient in guacamole?",
-            "options": [
-                "Tomato",
-                "Avocado",
-                "Pepper",
-                "Onion"
-            ],
-            "correctIndex": 1
-        },
-        {
             "questionId": 3,
-            "text": "Which spice is known as the 'king of spices'?",
+            "text": "¿Quien era el villano principal de la primera parte de jojo's?",
             "options": [
-                "Cumin",
-                "Balck Pepper",
-                "Turmeric",
-                "Cinnamon"
+                "Dio Brando",
+                "Speedwagon",
+                "Jack el destripador",
+                "Jonathan Joestar"
             ],
-            "correctIndex": 1
+            "correctIndex": 0
         },
         {
             "questionId": 4,
-            "text": "What is the traditional ingredient in Japanese sushi rice?",
+            "text": "¿En cuantas partes Dio es el villano principal?",
             "options": [
-                "White Vinegar",
-                "Rice Wine",
-                "Apple Coast",
-                "Lemon Juice"
+                "1",
+                "2",
+                "3",
+                "4"
             ],
             "correctIndex": 1
         },
         {
             "questionId": 5,
-            "text": "Which country produces the most chocolate in the world?",
+            "text": "¿Cual era el stand de Dio la segunda vez que aparece en la serie?",
             "options": [
-                "Belgium",
-                "Switzerland",
-                "Invoy Coast",
-                "Germany"
+                "Star platinum",
+                "Made in heaven",
+                "Killer Queen: Bites the dust",
+                "The world"
             ],
-            "correctIndex": 2
+            "correctIndex": 3
         }
     ]
 }
