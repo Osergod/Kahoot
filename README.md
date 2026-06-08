@@ -1,4 +1,4 @@
-PROJECTE INCOMPLERT
+PROJECTE COMPLERT
 
 
 # Projecte II: Kahoot 
